@@ -50,13 +50,14 @@ try (Connection con = DriverManager.getConnection(url, uid, pw)) {
 	}
 		ResultSet rst = pstmt.executeQuery();
 		out.println("<h2>All Products</h2>");
-		out.println("<table><tr><th></th><th>Product Name</th><th>Price</th></tr>");
+		out.println("<font face=\"Century Gothic\" size=\"4\"><table class=\"table\" border=\"1\"><tr><th></th><th>Product Name</th><th>Price</th></tr>");
 		while (rst.next()){
 			int id = rst.getInt("productId");
 			String productName = rst.getString("productName");
-			String price = rst.getString("productPrice");
-			out.print("<tr><td><a href=\"addcart.jsp?id=" + id + "&name="+productName+"&price="+price+"\">Add to Cart</a></td>");
-			out.println("<td>"+productName + "</td><td>" +price + "</td></tr>");
+			Double price = rst.getDouble("productPrice");
+			out.print("<tr><td><a href=\"addcart.jsp?id=" + id + "&name="+productName+"&price="+price+"\"><font color=\"#0000FF\">Add to Cart</a></td>");
+			out.print("<td><a href=\"product.jsp?id=" + id+"\"><font color=\"#0000FF\">"+productName+"</a></td>");
+			out.println("<td>" +NumberFormat.getCurrencyInstance().format(price) + "</td></tr>");
 			}
 		}
 		catch (SQLException ex)
