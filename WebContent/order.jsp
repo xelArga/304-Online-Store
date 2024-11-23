@@ -4,7 +4,6 @@
 <%@ page import="java.util.Iterator" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="java.util.Map" %>
-<%@ page import="java.text.DecimalFormat" %>
 <%@ include file="jdbc.jsp" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF8"%>
 <!DOCTYPE html>
@@ -36,7 +35,6 @@ try {
 		} else if (productList == null || productList.isEmpty()){
 			out.println("<h1>Your shopping cart is empty!</h1>");
 		} else{
-			DecimalFormat df = new DecimalFormat("#.00");
 			String fullName = rst.getString("firstName") + " " + rst.getString("lastName");
 			double totalAmount = 0;
 			SQL = "INSERT INTO ordersummary(orderDate, customerId) VALUES (?, ?)";
@@ -68,10 +66,10 @@ try {
 				pstmt.setInt(3, qty);
 				pstmt.setDouble(4, pr);
 				pstmt.executeUpdate();
-				out.println("<tr><td>" + productId +"</td><td>"+(String)product.get(1)+"</td><td>"+qty+"</td><td>$"+df.format(pr)+"</td><td>$"+df.format(subtotal)+"</td></tr>");
+				out.println("<tr><td>" + productId +"</td><td>"+(String)product.get(1)+"</td><td>"+qty+"</td><td>"+NumberFormat.getCurrencyInstance().format(pr)+"</td><td>"+NumberFormat.getCurrencyInstance().format(subtotal)+"</td></tr>");
 				
 			}
-			out.println("<tr><td colspan=\"4\" align=\"right\"><b>Order Total</b></td><td aling=\"right\">$"+ df.format(totalAmount)+
+			out.println("<tr><td colspan=\"4\" align=\"right\"><b>Order Total</b></td><td aling=\"right\">"+ NumberFormat.getCurrencyInstance().format(totalAmount)+
 			 "</td></tr></table>");
 			out.println("<h1>Order completed. Will be shipped soon...</h1>");
 			out.println("<h1>Your order reference number is: "+orderId+"</h1>");

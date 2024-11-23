@@ -45,13 +45,13 @@ try (Connection con = DriverManager.getConnection(url, uid, pw)) {
 					onOrder = false;
 				}
 			
-				out.println("<tr><td>"+rst.getString("orderId")+"</td><td>"+rst.getString("orderDate")+"</td><td>"+rst.getInt("customerId")+"</td><td>"+rst.getString("firstName")+" "+rst.getString("lastName")+"</td><td>"+rst.getString("totalAmount")+"</tr>");
+				out.println("<tr><td>"+rst.getString("orderId")+"</td><td>"+rst.getString("orderDate")+"</td><td>"+rst.getInt("customerId")+"</td><td>"+rst.getString("firstName")+" "+rst.getString("lastName")+"</td><td>"+NumberFormat.getCurrencyInstance().format(rst.getDouble("totalAmount"))+"</tr>");
 				out.println("<tr align=\"right\"><td colspan=\"4\">");
 				out.println("<table border = \"1\"><th>Product Id</th> <th>Quantity</th> <th>Price</th></tr>");
-				out.println("<tr><td>"+rst.getInt("productId")+"</td><td>"+rst.getInt("quantity")+"</td><td>"+rst.getString("price")+"</td></tr>");
+				out.println("<tr><td>"+rst.getInt("productId")+"</td><td>"+rst.getInt("quantity")+"</td><td>"+NumberFormat.getCurrencyInstance().format(rst.getDouble("price"))+"</td></tr>");
 				onOrder = true;
 			} else{
-				out.println("<tr><td>"+rst.getInt("productId")+"</td><td>"+rst.getInt("quantity")+"</td><td>"+rst.getString("price")+"</td></tr>");
+				out.println("<tr><td>"+rst.getInt("productId")+"</td><td>"+rst.getInt("quantity")+"</td><td>"+NumberFormat.getCurrencyInstance().format(rst.getDouble("price"))+"</td></tr>");
 			}
 			
 			
