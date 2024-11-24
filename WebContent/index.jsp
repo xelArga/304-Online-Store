@@ -2,31 +2,43 @@
 <html>
 <head>
         <title>Ray's Grocery Main Page</title>
+		<link rel="stylesheet" type="text/css" href="css/dark-theme.css">
+        <link rel="stylesheet" type="text/css" href="css/index.css">
 </head>
 <body>
-<h1 align="center">Welcome to Ray's Grocery</h1>
+ <%@ include file="header.jsp" %>
+<header>
+        <h1>Ray's Groceries</h1>
+    </header>
+    <div class="banner">
+        <h2>Welcome to Ray's Groceries!</h2>
+        <p>Your one-stop shop for fresh produce, pantry staples, and everyday essentials.</p>
+        <a href="listprod.jsp">Start Shopping</a>
+    </div>
 
-<h2 align="center"><a href="login.jsp">Login</a></h2>
-
-<h2 align="center"><a href="listprod.jsp">Begin Shopping</a></h2>
-
-<h2 align="center"><a href="listorder.jsp">List All Orders</a></h2>
-
-<h2 align="center"><a href="customer.jsp">Customer Info</a></h2>
-
-<h2 align="center"><a href="admin.jsp">Administrators</a></h2>
-
-<h2 align="center"><a href="logout.jsp">Log out</a></h2>
-
-<%
-	String userName = (String) session.getAttribute("authenticatedUser");
-	if (userName != null)
-		out.println("<h3 align=\"center\">Signed in as: "+userName+"</h3>");
-%>
-
-<h4 align="center"><a href="ship.jsp?orderId=1">Test Ship orderId=1</a></h4>
-
-<h4 align="center"><a href="ship.jsp?orderId=3">Test Ship orderId=3</a></h4>
+    <div class="featured">
+        <h2>Featured Products</h2>
+        <div class="product-grid">
+            <div class="product-card">
+                <img src="img/1.jpg" alt="Chai">
+                <h3>Chai</h3>
+                <p>$18.00</p>
+                <a href="product.jsp?id=1">View Details</a>
+            </div>
+            <div class="product-card">
+                <img src="img/2.jpg" alt="Chang">
+                <h3>Chang</h3>
+                <p>$19.00</p>
+                <a href="product.jsp?id=2">View Details</a>
+            </div>
+            <div class="product-card">
+                <img src="img/5.jpg" alt="Gumbo Mix">
+                <h3>Chef Anton's Gumbo Mix</h3>
+                <p>$21.35</p>
+                <a href="product.jsp?id=5">View Details</a>
+            </div>
+        </div>
+    </div>
 
 </body>
 </head>

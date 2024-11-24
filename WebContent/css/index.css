@@ -1,0 +1,121 @@
+/* General Styles */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #121212;
+    color: #e0e0e0;
+    text-align: center;
+}
+
+/* Header */
+header {
+    background-color: #1f1f1f;
+    padding: 20px;
+    text-align: center;
+    border-bottom: 2px solid #444;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2.5em;
+    color: #ffbb00;
+}
+
+/* Banner Section */
+.banner {
+    background-image: url('images/grocery-banner.jpg');
+    background-size: cover;
+    background-position: center;
+    padding: 60px 20px;
+    color: #fff;
+    text-shadow: 2px 2px 4px #000;
+}
+
+.banner h2 {
+    font-size: 2em;
+    margin: 0 0 10px;
+}
+
+.banner p {
+    font-size: 1.2em;
+    margin: 0 0 20px;
+}
+
+.banner a {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #ffbb00;
+    color: #121212;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 1em;
+}
+
+.banner a:hover {
+    background-color: #ffd54f;
+}
+
+/* Featured Products Section */
+.featured {
+    padding: 40px 20px;
+}
+
+.featured h2 {
+    margin-bottom: 20px;
+    font-size: 1.8em;
+}
+
+.product-grid {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.product-card {
+    background-color: #1f1f1f;
+    border: 1px solid #444;
+    border-radius: 5px;
+    padding: 20px;
+    width: 200px;
+    text-align: center;
+}
+
+.product-card img {
+    width: 100%;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+.product-card h3 {
+    font-size: 1.2em;
+    margin: 0 0 10px;
+}
+
+.product-card p {
+    font-size: 0.9em;
+    color: #ccc;
+}
+
+.product-card a {
+    display: inline-block;
+    padding: 8px 12px;
+    background-color: #ff9800;
+    color: #121212;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 0.9em;
+}
+
+.product-card a:hover {
+    background-color: #ffd54f;
+}
+
+/* Footer */
+footer {
+    background-color: #1f1f1f;
+    color: #e0e0e0;
+    padding: 10px;
+    margin-top: 20px;
+    border-top: 2px solid #444;
+}

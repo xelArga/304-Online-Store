@@ -2,10 +2,12 @@
 <html>
 <head>
 <title>Login Screen</title>
+<link rel="stylesheet" type="text/css" href="css/dark-theme.css">
+<link rel="stylesheet" type="text/css" href="css/table-styles.css">
 </head>
 <body>
-
-<div style="margin:0 auto;text-align:center;display:inline">
+<%@ include file="header.jsp" %>
+<div class="login-container">
 
 <h3>Please Login to System</h3>
 
@@ -17,13 +19,13 @@ if (session.getAttribute("loginMessage") != null)
 
 <br>
 <form name="MyForm" method=post action="validateLogin.jsp">
-<table style="display:inline">
+<table>
 <tr>
-	<td><div align="right"><font face="Arial, Helvetica, sans-serif" size="2">Username:</font></div></td>
+	<td>Username</td>
 	<td><input type="text" name="username"  size=10 maxlength=10></td>
 </tr>
 <tr>
-	<td><div align="right"><font face="Arial, Helvetica, sans-serif" size="2">Password:</font></div></td>
+	<td>Password</td>
 	<td><input type="password" name="password" size=10 maxlength="10"></td>
 </tr>
 </table>

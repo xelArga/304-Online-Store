@@ -1,11 +1,14 @@
 <html>
 <head>
 <title>Ray's Grocery</title>
+ <link rel="stylesheet" type="text/css" href="css/dark-theme.css">
+<link rel="stylesheet" type="text/css" href="css/table-styles.css">
 </head>
 <body>
+ <%@ include file="header.jsp" %>
 
 <h1>Enter your customer id and password to complete the transaction:</h1>
-
+<div class="login-container">
 <form method="get" action="order.jsp">
 <table>
 <tr><td>Customer ID:</td><td><input type="text" name="customerId" size="20"></td></tr>
@@ -13,7 +16,7 @@
 <tr><td><input type="submit" value="Submit"></td><td><input type="reset" value="Reset"></td></tr>
 </table>
 </form>
-
+</div>
 </body>
 </html>
 

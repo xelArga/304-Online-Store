@@ -2,12 +2,14 @@
 <html>
 <head>
 <title>Administrator Page</title>
+<link rel="stylesheet" type="text/css" href="css/dark-theme.css">
+<link rel="stylesheet" type="text/css" href="css/index.css">
 </head>
 <body>
 <%@ include file="auth.jsp"%>
 <%@ page import="java.text.NumberFormat" %>
 <%@ include file="jdbc.jsp" %>
-
+ <%@ include file="header.jsp" %>
 <%
 
 try (Connection con = DriverManager.getConnection(url, uid, pw)) {

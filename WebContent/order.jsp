@@ -10,9 +10,11 @@
 <html>
 <head>
 <title>YOUR NAME Grocery Order Processing</title>
+	<link rel="stylesheet" type="text/css" href="css/dark-theme.css">
+    <link rel="stylesheet" type="text/css" href="css/index.css">
 </head>
 <body>
-
+<%@ include file="header.jsp" %>
 <% 
 // Get customer id
 
