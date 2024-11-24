@@ -9,9 +9,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>YOUR NAME Grocery Order Processing</title>
+<title>Ray's Grocery Order Processing</title>
 	<link rel="stylesheet" type="text/css" href="css/dark-theme.css">
-    <link rel="stylesheet" type="text/css" href="css/index.css">
+    <link rel="stylesheet" type="text/css" href="css/table-styles.css">
 </head>
 <body>
 <%@ include file="header.jsp" %>
@@ -19,6 +19,9 @@
 // Get customer id
 
 String custId = request.getParameter("customerId");
+String paymentType = request.getParameter("paymentType");
+String cardNumber = request.getParameter("cardNumber");
+String expiry = request.getParameter("expiry");
 // Determine if valid customer id was entered
 
 @SuppressWarnings({"unchecked"})
@@ -27,7 +30,7 @@ Connection con;
 try {
 	Integer.parseInt(custId);
 	con = DriverManager.getConnection(url, uid, pw);
-	String SQL = "SELECT firstName, lastName " +
+	String SQL = "SELECT firstName, lastName, address, city, state, postalCode, country " +
 		"FROM customer WHERE customerId = ?";
 		PreparedStatement pstmt= con.prepareStatement(SQL);
 		pstmt.setString(1, custId);
@@ -37,12 +40,28 @@ try {
 		} else if (productList == null || productList.isEmpty()){
 			out.println("<h1>Your shopping cart is empty!</h1>");
 		} else{
+			String paySQL = "INSERT INTO paymentmethod(paymentType, paymentNumber, paymentExpiryDate, customerId) VALUES (?, ?, ?, ?)";
+			PreparedStatement pstmt2 = con.prepareStatement(paySQL);
+			pstmt2.setString(1, paymentType);
+			pstmt2.setString(2, cardNumber);
+			String str = "20"+expiry.charAt(3)+expiry.charAt(4)+"-"+expiry.charAt(0)+expiry.charAt(1)+"-01";
+			Date date=Date.valueOf(str);
+			pstmt2.setDate(3, date);
+			pstmt2.setString(4, custId);
+			pstmt2.executeUpdate();
+
 			String fullName = rst.getString("firstName") + " " + rst.getString("lastName");
 			double totalAmount = 0;
-			SQL = "INSERT INTO ordersummary(orderDate, customerId) VALUES (?, ?)";
+			SQL = "INSERT INTO ordersummary(orderDate, customerId, shipToAddress, shipToCity, shipToState, shipToPostalCode, shipToCountry) " +
+			"VALUES (?, ?, ?, ?, ?, ?, ?)";
 			pstmt = con.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);	
 			pstmt.setTimestamp(1, new java.sql.Timestamp(System.currentTimeMillis()));
 			pstmt.setString(2, custId);  
+			pstmt.setString(3, rst.getString("address")); 
+			pstmt.setString(4, rst.getString("city")); 
+			pstmt.setString(5, rst.getString("state")); 
+			pstmt.setString(6, rst.getString("postalCode")); 
+			pstmt.setString(7, rst.getString("country")); 
 			pstmt.executeUpdate();
 			ResultSet keys = pstmt.getGeneratedKeys();
 			keys.next();
@@ -51,7 +70,7 @@ try {
 			pstmt = con.prepareStatement(SQL);
 			Iterator<Map.Entry<String, ArrayList<Object>>> iterator = productList.entrySet().iterator();
 			out.println("<h1>Your Order Summary</h1>");
-			out.println("<table><tr><th>Product Id</th><th>Product Name</th><th>Quantity</th><th>Price</th><th>Subtotal</th></tr>");
+			out.println("<table class=\"product-table\"><tr><th>Product Id</th><th>Product Name</th><th>Quantity</th><th>Price</th><th>Subtotal</th></tr>");
 			while (iterator.hasNext())
 			{ 
 				double subtotal = 0;
@@ -69,13 +88,19 @@ try {
 				pstmt.setDouble(4, pr);
 				pstmt.executeUpdate();
 				out.println("<tr><td>" + productId +"</td><td>"+(String)product.get(1)+"</td><td>"+qty+"</td><td>"+NumberFormat.getCurrencyInstance().format(pr)+"</td><td>"+NumberFormat.getCurrencyInstance().format(subtotal)+"</td></tr>");
-				
 			}
-			out.println("<tr><td colspan=\"4\" align=\"right\"><b>Order Total</b></td><td aling=\"right\">"+ NumberFormat.getCurrencyInstance().format(totalAmount)+
+
+			out.println("<tr><td colspan=\"4\" style=\"text-align:right\"><b>Order Total</b></td><td align=\"right\">"+ NumberFormat.getCurrencyInstance().format(totalAmount)+
 			 "</td></tr></table>");
-			out.println("<h1>Order completed. Will be shipped soon...</h1>");
-			out.println("<h1>Your order reference number is: "+orderId+"</h1>");
-			out.println("<h1>Shipping to customer: "+custId+" Name: " +fullName+ "</h1>");
+			out.println("<h1>Order completed. Here is your order information</h1>");
+			out.println("<table class=\"product-table\">");
+			out.println("<tr><th>Customer Number</th>" + "<td>"+custId+ "</td></tr>");
+			out.println("<tr><th>Customer Name</th>" + "<td>"+fullName+ "</td></tr>");
+			out.println("<tr><th>Shipping Address</th>" + "<td>"+rst.getString("address") + ", "+rst.getString("city")+ ", " +
+				rst.getString("state") + ", " + rst.getString("postalCode") + ", " + rst.getString("country") + "</td></tr>");
+			out.println("<tr><th>Order Reference Number</th>" + "<td>"+ orderId + "</td></tr>");
+			out.println("</table>");
+			out.println("<h1>Order is on it's way! Thank you!</h1>");
 			SQL = "UPDATE ordersummary SET totalAmount = ? WHERE orderId = ?";
 			pstmt = con.prepareStatement(SQL);
 			pstmt.setDouble(1, totalAmount);

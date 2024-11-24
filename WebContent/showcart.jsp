@@ -102,7 +102,7 @@ else
 		out.print("</form>");
 		total = total +pr*qty;
 	}
-	out.println("<tr><td colspan=\"4\" align=\"right\"><b>Order Total</b></td>"
+	out.println("<tr><td colspan=\"4\" style=\"text-align:right\"><b>Order Total</b></td>"
 			+"<td align=\"right\">"+currFormat.format(total)+"</td></tr>");
 	out.println("</table>");
 	
