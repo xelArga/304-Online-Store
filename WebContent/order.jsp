@@ -70,7 +70,7 @@ try {
 			pstmt = con.prepareStatement(SQL);
 			Iterator<Map.Entry<String, ArrayList<Object>>> iterator = productList.entrySet().iterator();
 			out.println("<h1>Your Order Summary</h1>");
-			out.println("<table class=\"product-table\"><tr><th>Product Id</th><th>Product Name</th><th>Quantity</th><th>Price</th><th>Subtotal</th></tr>");
+			out.println("<table class=\"customer-table\"><tr><th>Product Id</th><th>Product Name</th><th>Quantity</th><th>Price</th><th>Subtotal</th></tr>");
 			while (iterator.hasNext())
 			{ 
 				double subtotal = 0;
@@ -93,7 +93,7 @@ try {
 			out.println("<tr><td colspan=\"4\" style=\"text-align:right\"><b>Order Total</b></td><td align=\"right\">"+ NumberFormat.getCurrencyInstance().format(totalAmount)+
 			 "</td></tr></table>");
 			out.println("<h1>Order completed. Here is your order information</h1>");
-			out.println("<table class=\"product-table\">");
+			out.println("<table class=\"customer-table\">");
 			out.println("<tr><th>Customer Number</th>" + "<td>"+custId+ "</td></tr>");
 			out.println("<tr><th>Customer Name</th>" + "<td>"+fullName+ "</td></tr>");
 			out.println("<tr><th>Shipping Address</th>" + "<td>"+rst.getString("address") + ", "+rst.getString("city")+ ", " +

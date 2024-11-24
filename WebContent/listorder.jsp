@@ -5,8 +5,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>YOUR NAME Grocery Order List</title>
+<title>Ray's Grocery Order List</title>
+ <link rel="stylesheet" type="text/css" href="css/dark-theme.css">
+<link rel="stylesheet" type="text/css" href="css/table-styles.css">
 </head>
+<%@ include file="header.jsp" %>
 <body>
 
 <h1>Order List</h1>
@@ -57,7 +60,7 @@ try (Connection con = DriverManager.getConnection(url, uid, pw)) {
 			
 		}
 		out.println("</table>");
-			  }
+	}
 	    
 		catch (SQLException ex)
 		{

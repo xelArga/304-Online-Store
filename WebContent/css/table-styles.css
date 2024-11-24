@@ -32,3 +32,38 @@
     text-decoration: underline;
     color: #ffbb00;
 }
+
+.customer-table {
+    width: 40%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color: #1f1f1f;
+    color: #e0e0e0;
+    margin: auto;
+}
+
+.customer-table th,
+.customer-table td {
+    padding: 10px;
+    text-align: left;
+    border: 1px solid #444;
+}
+
+.customer-table th {
+    background-color: #2c2c2c;
+    color: #ffbb00;
+}
+
+.customer-table a {
+    color: #d6d6d6;
+    /* Bright orange to stand out */
+    text-decoration: none;
+    /* Removes the underline */
+    font-weight: bold;
+    /* Makes the text easier to see */
+}
+
+.customer-table a:hover {
+    text-decoration: underline;
+    color: #ffbb00;
+}

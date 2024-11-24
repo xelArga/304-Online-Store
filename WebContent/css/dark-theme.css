@@ -87,6 +87,19 @@ footer {
     max-width: 1300px;
     margin: auto;
 }
+.container2 a{
+    text-decoration: none;
+        color: #000000;
+        padding: 10px 20px;
+        margin: 0 5px;
+        border-radius: 5px;
+        background-color: #cc9600;
+}
+
+.container2 a:hover{
+    background-color: #f0c95e;
+        color: #121212;
+}
 
 button {
     padding: 10px 15px;
@@ -101,7 +114,9 @@ button:hover {
     background-color: #e08900;
 }
 
-form input[type="text"] {
+form input[type="text"],
+input[type="password"],
+input[type="email"] {
     width: 50%;
     padding: 10px;
     margin: 10px 0;
@@ -112,7 +127,9 @@ form input[type="text"] {
     font-size: 16px;
 }
 
-td input[type="text"] {
+td input[type="text"],
+td input[type="password"],
+td input[type="email"] {
     width: 50%;
     padding: 10px;
     margin: 10px 0;
@@ -190,7 +207,8 @@ form {
 }
 
 .login-container input[type="text"],
-.login-container input[type="password"] {
+.login-container input[type="password"],
+.login-container input[type="email"] {
     width: 200px;
     /* Ensures consistent width */
     padding: 10px;

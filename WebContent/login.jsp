@@ -32,7 +32,7 @@ if (session.getAttribute("loginMessage") != null)
 <br/>
 <input class="submit" type="submit" name="Submit2" value="Log In">
 </form>
-
+<h2><a href="createuser.jsp">Don't have an account? Create one!</a></h2>
 </div>
 
 </body>
